@@ -1,0 +1,128 @@
+{
+  "Profile": {
+    "menu": {
+      "info": "Account info",
+      "order": "Order",
+      "refund": "Refund order",
+      "favorite": "Favorite product",
+      "log-out": "Sign out"
+    },
+    "info": {
+      "title": "INFORMATION",
+      "name": "Account Info",
+      "male": "Male",
+      "female": "Female",
+      "user-name": "User name",
+      "email": "Email",
+      "phone": "Phone number",
+      "address": "Address",
+      "other-name": "Parameter Info",
+      "height": "Height",
+      "weight": "Weight",
+      "submit": "Submit"
+    },
+    "order": {
+      "title": "ORDER HISTORY",
+      "progress": "Progress",
+      "detail": "Detail",
+      "total-price": "Total price",
+      "submit": "Submit",
+      "phone": "Phone",
+      "address": "Address",
+      "create-at": "Create at",
+      "user-name": "User name"
+    },
+    "refund": {
+      "title": "REFUND ORDER",
+      "accept": "Accept",
+      "reject": "Reject",
+      "product": "Product",
+      "reason": "Reason",
+      "create-at": "Create at",
+      "status": "Status",
+      "method": "Method refund",
+      "note": "Note",
+      "enter-note": "Enter your note",
+      "broken": "Product is broken",
+      "error": "Product is error",
+      "not-as-described": "Product is not as described",
+      "send": "Send",
+      "search": "Search",
+      "quantity": "Quantity",
+      "images": "Images",
+      "order": "Order",
+      "exchange-new-product": "Exchange new product",
+      "exchange-other-product": "Exchange other product",
+      "refund-to-account": "Refund to account",
+      "product-warranty": "Product warranty"
+    },
+    "favorite": {
+      "title": "FAVORITE PRODUCT"
+    }
+  },
+  "Category": {
+    "title": "SHOE PRODUCT CATALOG",
+    "sort": "Sort by",
+    "default": "Default",
+    "price-increase": "Price increase",
+    "price-decrease": "Price decrease",
+    "new": "New product",
+    "hot": "Hot product",
+    "discount": "Discount product"
+  },
+  "NoResults": {
+    "no-result": "No results found"
+  },
+  "Navbar": {
+    "profile": "PROFILE",
+    "chat": "CHAT",
+    "search": "SEARCH"
+  },
+  "Footer": {
+    "hotline": "HOTLINE",
+    "contact": "Contract",
+    "introduce": "Introduce", 
+    "new": "News",
+    "about-us": "ABOUT US",
+    "product-exchange-policy": "Product Exchange Policy",
+    "complaint-resolution-policy": "Complaint Resolution Policy",
+    "shipping-delivery-policy": "Shipping and Delivery Policy",
+    "payment-method": "Payment Methods",
+    "purchase-guide": "Purchase Guide",
+    "support": "SUPPORT",
+    "subscribe-title": "Subscribe to get the latest on sales",
+    "subscribe-text": "Subscribe",
+    "payment-title": "Supported payment systems",
+    "policy": "2024 Store, Inc. All Rights Reserved Terms of Use and Privacy Policy"
+  },
+  "Product": {
+    "new-products": "New Products",
+    "featured-products": "Featured Products",
+    "discount-products": "Discount Products",
+    "favorite-products": "Favorite Products",
+    "related-products": "Related Products"
+  },
+  "Cart": {
+    "name": "Shopping Cart",
+    "order-summary": "Order summary",
+    "order-total": "Order total",
+    "coupon-action": "Enter your coupon code",
+    "submit": "Submit",
+    "checkout": "Checkout"
+  },
+  "InfoProduct": {
+    "description": "Description",
+    "detail": "Detail",
+    "feature": "Feature",
+    "size": "Size",
+    "color": "Color",
+    "add-to-card": "Add to Cart",
+    "sell": "Sell",
+    "customer-review": "Customer reviews",
+    "base-on": "Base on",
+    "create-review": "Create your review",
+    "send": "Send",
+    "other-review": "Other reviews",
+    "post": "Review post by"
+  }
+}

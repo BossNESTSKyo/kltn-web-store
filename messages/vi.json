@@ -1,0 +1,128 @@
+{
+  "Profile": {
+    "menu": {
+      "info": "Thông tin cá nhân",
+      "order": "Đơn hàng",
+      "refund": "Hoàn trả đơn hàng",
+      "favorite": "Sản phẩm yêu thích",
+      "log-out": "Đăng xuất"
+    },
+    "info": {
+      "title": "THÔNG TIN",
+      "name": "Thông tin cá nhân",
+      "male": "Anh",
+      "female": "Chị",
+      "user-name": "Họ và tên",
+      "email": "Địa chỉ email",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "other-name": "Thông số của bạn",
+      "height": "Chiều cao",
+      "weight": "Cân nặng",
+      "submit": "Xác nhận"
+    },
+    "order": {
+      "title": "LỊCH SỬ ĐƠN HÀNG",
+      "progress": "Tiến trình",
+      "detail": "Chi tiết",
+      "total-price": "Tống giá",
+      "submit": "Xác nhận",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "create-at": "Ngày mua",
+      "user-name": "Họ và tên"
+    },
+    "refund": {
+      "title": "HOÀN TRẢ ĐƠN HÀNG",
+      "accept": "Chấp nhận",
+      "reject": "Từ chối",
+      "product": "Sản phẩm",
+      "reason": "Lý do",
+      "create-at": "Ngày tạo",
+      "status": "Tình trạng",
+      "method": "Phương thức hoàn trả",
+      "note": "Ghi chú",
+      "enter-note": "Thêm ghi chú của bạn",
+      "broken": "Sản phẩm bị hỏng",
+      "error": "Sản phẩm bị lỗi",
+      "not-as-described": "Sản phẩm không như mô tả",
+      "send": "Gửi",
+      "search": "Tìm kiếm",
+      "quantity": "Số lượng",
+      "images": "Hình ảnh",
+      "order": "Đơn hàng",
+      "exchange-new-product": "Đổi sản phẩm mới",
+      "exchange-other-product": "Đổi sản phẩm khác",
+      "refund-to-account": "Hoàn trả tiền vào tài khoản",
+      "product-warranty": "Bảo hành sản phẩm"
+    },
+     "favorite": {
+      "title": "SẢN PHẨM YÊU THÍCH"
+    }
+  },
+  "Category": {
+    "title": "DANH MỤC SẢN PHẨM GIÀY",
+    "sort": "Sắp xếp theo",
+    "default": "Mặc định",
+    "price-increase": "Giá tăng dần",
+    "price-decrease": "Giá giảm dần",
+    "new": "Sản phẩm mới",
+    "hot": "Sản phẩm bán chạy",
+    "discount": "Sản phẩm giảm giá"
+  },
+  "NoResults": {
+    "no-result": "Sản phẩm không tồn tại"
+  },
+  "Navbar": {
+    "profile": "HỒ SƠ",
+    "chat": "TRÒ CHUYỆN",
+    "search": "TÌM KIẾM"
+  },
+  "Footer": {
+    "hotline": "TỔNG ĐÀI CSKH",
+    "contact": "Liên hệ",
+    "introduce": "Giới thiệu", 
+    "new": "Tin tức",
+    "about-us": "VỀ CHÚNG TÔI",
+    "product-exchange-policy": "Chính sách đổi sản phẩm",
+    "complaint-resolution-policy": "Chính sách giải quyết khiếu nại",
+    "shipping-delivery-policy": "Chính sách vận chuyển và giao nhận",
+    "payment-method": "Hình thức thanh toán",
+    "purchase-guide": "Hướng dẫn mua hàng",
+    "support": "HỖ TRỢ",
+    "subscribe-title": "Đăng kí để nhận thông tin mới nhất",
+    "subscribe-text": "Gửi",
+    "payment-title": "Các phương thức thanh toán hỗ trợ",
+    "policy": "2024 Store, Inc. All Rights Reserved Terms of Use and Privacy Policy"
+  },
+  "Product": {
+    "new-products": "Sản phẩm mới",
+    "featured-products": "Sản phẩm nổi bật",
+    "discount-products": "Sản phẩm giảm giá",
+    "favorite-products": "Sản phẩm yêu thích",
+    "related-products": "Sản phẩm liên quan"
+  },
+  "Cart": {
+    "name": "Giỏ hàng",
+    "order-summary": "Thông tin đơn hàng",
+    "order-total": "Tổng tiền",
+    "coupon-action": "Nhập mã khuyến mãi",
+    "submit": "Xác nhận",
+    "checkout": "Thanh toán bằng PAYPAL"
+  },
+  "InfoProduct": {
+    "description": "Mô tả",
+    "detail": "Chi tiết",
+    "feature": "Tính năng",
+    "size": "Kích cỡ",
+    "color": "Màu sắc",
+    "add-to-card": "Thêm vào giỏ hàng",
+    "sell": "Đã bán",
+    "customer-review": "Đánh giá của khách hàng",
+    "base-on": "Dựa trên",
+    "create-review": "Tạo đánh giá của bạn",
+    "send": "Gửi",
+    "other-review": "Các đánh giá khác",
+    "post": "Đánh giá bởi"
+  }
+}
