@@ -20,6 +20,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Button from "@/components/ui/button";
+import Currency from "@/components/ui/currency";
+import CurrencyVN from "@/components/ui/currency-vn";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface OrderItemPageProps {
@@ -86,8 +88,13 @@ const OrderItemPage: React.FC<OrderItemPageProps> = ({ data }) => {
       <div className="flex flex-col gap-3 border-2 rounded-md p-3">
         <div className="flex justify-between">
           <div>Cart</div>
-          <div>
-            {t("order.total-price")}: {data.totalPrice}
+          <div className="flex gap-1">
+            <span>{t("order.total-price")}:</span>
+            {data.totalPrice && parseFloat(data.totalPrice) > 1000 ? (
+              <CurrencyVN value={data.totalPrice} />
+            ) : (
+              <Currency value={data.totalPrice} />
+            )}
           </div>
         </div>
         <div className="flex justify-between items-center">

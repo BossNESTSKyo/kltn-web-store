@@ -4,11 +4,19 @@ import { useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Heart, LogOut, UserSquare, ShoppingBag } from "lucide-react";
+import {
+  Heart,
+  LogOut,
+  UserSquare,
+  ShoppingBag,
+  RefreshCw,
+  MessageSquare,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
 import OrderPage from "./order";
+//import ReviewPage from "./review";
 import RefundPage from "./refund";
 import PaginationPage from "./pagination";
 import InformationPage from "./information";
@@ -81,7 +89,7 @@ const MenuBar = () => {
               )}
               onClick={() => setTitle("refund")}
             >
-              <ShoppingBag size={25} /> {t("menu.refund")}
+              <RefreshCw size={25} /> {t("menu.refund")}
             </li>
             <li
               key="favorite"
@@ -93,6 +101,16 @@ const MenuBar = () => {
             >
               <Heart size={25} /> {t("menu.favorite")}
             </li>
+            {/* <li
+              key="review"
+              className={cn(
+                "flex gap-4 border rounded-md pl-3 py-2 hover:cursor-pointer hover:bg-gray-500 hover:text-white",
+                title === "favorite" && "bg-black text-white"
+              )}
+              onClick={() => setTitle("review")}
+            >
+              <MessageSquare size={25} /> {t("menu.review")}
+            </li> */}
             <li
               key="signOut"
               className={cn(
@@ -109,6 +127,7 @@ const MenuBar = () => {
       {title === "order" && <OrderPage />}
       {title === "refund" && <RefundPage />}
       {title === "favorite" && <PaginationPage />}
+      {/* {title === "review" && <ReviewPage />} */}
     </div>
   );
 };

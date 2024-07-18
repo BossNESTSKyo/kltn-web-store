@@ -14,6 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import getCurrentUser from "@/actions/get-current-user";
 
 import Button from "@/components/ui/button";
+import Currency from "@/components/ui/currency";
+import CurrencyVN from "@/components/ui/currency-vn";
 import ImageUpload from "@/components/ui/image-upload";
 import {
   Form,
@@ -95,7 +97,7 @@ const RefundPage = () => {
 
     if (listOrders && listOrders.length > 0) {
       const order = listOrders.find((order: any) => order.id === selectOrder);
-      setListProducts(order.orderItems);
+      setListProducts(order?.orderItems);
     }
   }, [selectOrder, dates, isAccept, listOrders, user]);
 
@@ -175,7 +177,15 @@ const RefundPage = () => {
                   className="flex flex-col gap-3 border-2 rounded-md p-3"
                 >
                   <div className="flex justify-between">
-                    <div>Order - {refund.order?.totalPrice}</div>
+                    <div className="flex gap-1">
+                      <span>Order -</span>
+                      {refund.order?.totalPrice &&
+                      parseFloat(refund.order?.totalPrice) > 1000 ? (
+                        <CurrencyVN value={refund.order?.totalPrice} />
+                      ) : (
+                        <Currency value={refund.order?.totalPrice} />
+                      )}
+                    </div>
                     <div>
                       {refund.accept === true ? (
                         <div className="flex gap-2 items-center">
@@ -269,7 +279,19 @@ const RefundPage = () => {
                                   listOrders.length > 0 &&
                                   listOrders.map((order: any) => ({
                                     value: order.id,
-                                    label: `Cart - ${order.totalPrice}`,
+                                    label: (
+                                      <div className="flex gap-1">
+                                        <span>Cart -</span>
+                                        {order.totalPrice &&
+                                        parseFloat(order.totalPrice) > 1000 ? (
+                                          <CurrencyVN
+                                            value={order.totalPrice}
+                                          />
+                                        ) : (
+                                          <Currency value={order.totalPrice} />
+                                        )}
+                                      </div>
+                                    ),
                                   }))
                                 }
                               />

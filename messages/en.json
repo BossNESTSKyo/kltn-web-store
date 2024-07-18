@@ -30,7 +30,9 @@
       "phone": "Phone",
       "address": "Address",
       "create-at": "Create at",
-      "user-name": "User name"
+      "user-name": "User name",
+      "quantity": "Quantity",
+      "cancel": "Cancel"
     },
     "refund": {
       "title": "REFUND ORDER",

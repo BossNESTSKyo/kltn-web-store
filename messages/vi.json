@@ -30,7 +30,9 @@
       "phone": "Số điện thoại",
       "address": "Địa chỉ",
       "create-at": "Ngày mua",
-      "user-name": "Họ và tên"
+      "user-name": "Họ và tên",
+      "quantity": "Số lượng",
+      "cancel": "Hủy đơn"
     },
     "refund": {
       "title": "HOÀN TRẢ ĐƠN HÀNG",

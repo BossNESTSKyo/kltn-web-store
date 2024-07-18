@@ -161,6 +161,13 @@ const Summary = () => {
         </Button>
       </div>
       <Button
+        onClick={() => {}}
+        disabled={items.length === 0}
+        className="w-full mt-6 bg-blue-500"
+      >
+        Thanh toán khi nhận hàng
+      </Button>
+      <Button
         onClick={onCheckout}
         disabled={items.length === 0}
         className="w-full mt-6 bg-blue-500"
