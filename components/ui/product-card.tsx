@@ -36,45 +36,44 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const user = getCurrentUser();
 
   useEffect(() => {
-    fetchIsExist();
+    const fetchIsExist = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/favorite/${data.id}?customerId=${
+            user ? user.id : ""
+          }`
+        );
 
-    fetchData();
-  }, [data]);
+        if (response.data.isExist) {
+          setClickHeart(true);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setClickHeart(false);
+      }
+    };
 
-  const fetchIsExist = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/favorite/${data.id}?customerId=${
-          user ? user.id : ""
-        }`
+    const fetchData = async () => {
+      const reviews = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
       );
 
-      if (response.data.isExist) {
-        setClickHeart(true);
+      if (reviews?.data?.data.length > 0) {
+        const newRatingArr = [0, 0, 0, 0, 0];
+
+        reviews.data.data.forEach((item: any) => {
+          if (item.rating >= 1 && item.rating <= 5) {
+            newRatingArr[5 - item.rating] += 1;
+          }
+        });
+
+        setRatingArr(newRatingArr);
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setClickHeart(false);
-    }
-  };
+    };
 
-  const fetchData = async () => {
-    const reviews = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
-    );
-
-    if (reviews?.data?.data.length > 0) {
-      const newRatingArr = [0, 0, 0, 0, 0];
-
-      reviews.data.data.forEach((item: any) => {
-        if (item.rating >= 1 && item.rating <= 5) {
-          newRatingArr[5 - item.rating] += 1;
-        }
-      });
-
-      setRatingArr(newRatingArr);
-    }
-  };
+    fetchIsExist();
+    fetchData();
+  }, [data, user]);
 
   const totalRatings = ratingArr.reduce((sum, count) => sum + count, 0);
   const totalPoints = ratingArr.reduce(

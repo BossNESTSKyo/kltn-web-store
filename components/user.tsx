@@ -9,19 +9,19 @@ const UserPage = () => {
   const user = getCurrentUser();
 
   useEffect(() => {
+    const initData = async () => {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        {
+          user,
+        }
+      );
+    };
+
     if (user) {
       initData();
     }
-  }, []);
-
-  const initData = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/user`,
-      {
-        user,
-      }
-    );
-  };
+  }, [user]);
 
   return null;
 };

@@ -27,27 +27,27 @@ const InformationPage = () => {
   });
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/${user ? user.id : "new"}`
+      );
+
+      const data = response.data.data;
+
+      setUserInfo({
+        imageUrl: data && data.imageUrl ? data.imageUrl : "/user.png",
+        gender: data && data.gender ? data.gender : 1,
+        name: data && data.name ? data.name : "",
+        email: data && data.email ? data.email : "",
+        phone: data && data.phone ? data.phone : "",
+        address: data && data.address ? data.address : "",
+        height: data && data.height ? data.height : 1,
+        weight: data && data.weight ? data.weight : 1,
+      });
+    };
+
     fetchData();
   }, [user]);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/${user ? user.id : "new"}`
-    );
-
-    const data = response.data.data;
-
-    setUserInfo({
-      imageUrl: data && data.imageUrl ? data.imageUrl : "/user.png",
-      gender: data && data.gender ? data.gender : 1,
-      name: data && data.name ? data.name : "",
-      email: data && data.email ? data.email : "",
-      phone: data && data.phone ? data.phone : "",
-      address: data && data.address ? data.address : "",
-      height: data && data.height ? data.height : 1,
-      weight: data && data.weight ? data.weight : 1,
-    });
-  };
 
   const onChangeValue = (e: any, name: string) => {
     if (name === "height" || name === "weight") {
@@ -78,7 +78,22 @@ const InformationPage = () => {
         }
       );
 
-      fetchData();
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/${user ? user.id : "new"}`
+      );
+
+      const data = response.data.data;
+
+      setUserInfo({
+        imageUrl: data && data.imageUrl ? data.imageUrl : "/user.png",
+        gender: data && data.gender ? data.gender : 1,
+        name: data && data.name ? data.name : "",
+        email: data && data.email ? data.email : "",
+        phone: data && data.phone ? data.phone : "",
+        address: data && data.address ? data.address : "",
+        height: data && data.height ? data.height : 1,
+        weight: data && data.weight ? data.weight : 1,
+      });
 
       toast.success("Cập nhật thông tin cá nhân thành công.");
     } catch {

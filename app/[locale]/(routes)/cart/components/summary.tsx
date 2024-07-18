@@ -156,12 +156,14 @@ const Summary = () => {
             setCoupon(e.target.value);
           }}
         />
-        <Button onClick={onCheckCoupon}>{t("submit")}</Button>
+        <Button className="bg-red-400" onClick={onCheckCoupon}>
+          {t("submit")}
+        </Button>
       </div>
       <Button
         onClick={onCheckout}
         disabled={items.length === 0}
-        className="w-full mt-6"
+        className="w-full mt-6 bg-blue-500"
       >
         {t("checkout")}
       </Button>

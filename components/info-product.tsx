@@ -36,12 +36,14 @@ const InfoProduct: React.FC<InfoProductProps> = ({ data }) => {
 
   const [activeTab, setActiveTab] = useState("description");
   const [sizeSelect, setSizeSelect] = useState("");
+  const [sizeIdSelect, setSizeIdSelect] = useState("");
   const [colorSelect, setColorSelect] = useState("");
+  const [colorIdSelect, setColorIdSelect] = useState("");
   const [ratingArr, setRatingArr] = useState([0, 0, 0, 0, 0]);
 
   useEffect(() => {
     fetchData();
-  }, [data.id]);
+  });
 
   const fetchData = async () => {
     const reviews = await axios.get(
@@ -76,12 +78,17 @@ const InfoProduct: React.FC<InfoProductProps> = ({ data }) => {
   const cart = useCart();
 
   const onAddToCart = () => {
-    if (sizeSelect !== "" && colorSelect !== "") {
+    if (
+      sizeSelect !== "" &&
+      colorSelect !== "" &&
+      sizeIdSelect !== "" &&
+      colorIdSelect !== ""
+    ) {
       const { colors, sizes, ...newData } = data;
       const updatedData = {
         ...newData,
-        color: { name: colorSelect },
-        size: { name: sizeSelect },
+        color: { name: colorSelect, id: colorIdSelect },
+        size: { name: sizeSelect, id: sizeIdSelect },
       };
       cart.addItem(updatedData);
     } else {
@@ -162,14 +169,18 @@ const InfoProduct: React.FC<InfoProductProps> = ({ data }) => {
             <div className="flex items-center gap-x-4">
               <h3 className="font-semibold text-black">{t("size")}:</h3>
               {data?.sizes &&
-                data.sizes.map((size: any) => {
+                data.sizes.map((size: any, index: any) => {
                   return (
                     <Button
+                      key={index}
                       className={cn(
                         "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300",
                         sizeSelect === size.size.value && "bg-black text-white"
                       )}
-                      onClick={() => setSizeSelect(size.size.value)}
+                      onClick={() => {
+                        setSizeSelect(size.size.value);
+                        setSizeIdSelect(size.size.id);
+                      }}
                     >
                       {size.size.value}
                     </Button>
@@ -193,6 +204,7 @@ const InfoProduct: React.FC<InfoProductProps> = ({ data }) => {
                           style={{ backgroundColor: color?.color?.value }}
                           onClick={() => {
                             setColorSelect(color.color.name);
+                            setColorIdSelect(color.color.id);
                           }}
                         />
                       </div>

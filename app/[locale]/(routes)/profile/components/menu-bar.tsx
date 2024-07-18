@@ -32,7 +32,7 @@ const MenuBar = () => {
 
   useEffect(() => {
     localStorage.setItem("menuTitle", title);
-  }, [locale]);
+  }, [locale, title]);
 
   if (!isMounted) {
     return null;

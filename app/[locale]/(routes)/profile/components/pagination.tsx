@@ -29,23 +29,24 @@ const PaginationPage = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+
+    const fetchFavorites = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/favorite?customerId=${
+            user ? user.id : ""
+          }`
+        );
+
+        setFavoriteList(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching favorite data:", error);
+        setFavoriteList([]);
+      }
+    };
+
     fetchFavorites();
-  }, [favoriteList]);
-
-  const fetchFavorites = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/favorite?customerId=${
-          user ? user.id : ""
-        }`
-      );
-
-      setFavoriteList(response.data.data || []);
-    } catch (error) {
-      console.error("Error fetching favorite data:", error);
-      setFavoriteList([]);
-    }
-  };
+  }, [favoriteList, user]);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);

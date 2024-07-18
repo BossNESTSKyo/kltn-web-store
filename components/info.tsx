@@ -24,32 +24,34 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   const locale = useLocale();
 
   const [sizeSelect, setSizeSelect] = useState("");
+  const [sizeIdSelect, setSizeIdSelect] = useState("");
   const [colorSelect, setColorSelect] = useState("");
+  const [colorIdSelect, setColorIdSelect] = useState("");
   const [ratingArr, setRatingArr] = useState([0, 0, 0, 0, 0]);
 
   const cart = useCart();
 
   useEffect(() => {
+    const fetchData = async () => {
+      const reviews = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
+      );
+
+      if (reviews?.data?.data.length > 0) {
+        const newRatingArr = [0, 0, 0, 0, 0];
+
+        reviews.data.data.forEach((item: any) => {
+          if (item.rating >= 1 && item.rating <= 5) {
+            newRatingArr[5 - item.rating] += 1;
+          }
+        });
+
+        setRatingArr(newRatingArr);
+      }
+    };
+
     fetchData();
   }, [data.id]);
-
-  const fetchData = async () => {
-    const reviews = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
-    );
-
-    if (reviews?.data?.data.length > 0) {
-      const newRatingArr = [0, 0, 0, 0, 0];
-
-      reviews.data.data.forEach((item: any) => {
-        if (item.rating >= 1 && item.rating <= 5) {
-          newRatingArr[5 - item.rating] += 1;
-        }
-      });
-
-      setRatingArr(newRatingArr);
-    }
-  };
 
   const totalRatings = ratingArr.reduce((sum, count) => sum + count, 0);
   const totalPoints = ratingArr.reduce(
@@ -60,12 +62,17 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   const averageRating = totalRatings === 0 ? 0 : totalPoints / totalRatings;
 
   const onAddToCart = () => {
-    if (sizeSelect !== "" && colorSelect !== "") {
+    if (
+      sizeSelect !== "" &&
+      colorSelect !== "" &&
+      sizeIdSelect !== "" &&
+      colorIdSelect !== ""
+    ) {
       const { colors, sizes, ...newData } = data;
       const updatedData = {
         ...newData,
-        color: { name: colorSelect },
-        size: { name: sizeSelect },
+        color: { name: colorSelect, id: colorIdSelect },
+        size: { name: sizeSelect, id: sizeIdSelect },
       };
       cart.addItem(updatedData);
     } else {
@@ -112,14 +119,18 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Size:</h3>
           {data?.sizes &&
-            data.sizes.map((size: any) => {
+            data.sizes.map((size: any, index: any) => {
               return (
                 <Button
+                  key={index}
                   className={cn(
                     "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300",
                     sizeSelect === size?.size?.value && "bg-black text-white"
                   )}
-                  onClick={() => setSizeSelect(size?.size?.value)}
+                  onClick={() => {
+                    setSizeSelect(size?.size?.value);
+                    setSizeIdSelect(size.size.id);
+                  }}
                 >
                   {size?.size?.value}
                 </Button>
@@ -142,6 +153,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
                     style={{ backgroundColor: color?.color?.value }}
                     onClick={() => {
                       setColorSelect(color?.color?.name);
+                      setColorIdSelect(color.color.id);
                     }}
                   />
                 </div>

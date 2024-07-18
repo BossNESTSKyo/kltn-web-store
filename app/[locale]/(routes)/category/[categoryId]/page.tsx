@@ -18,6 +18,7 @@ interface CategoryPageProps {
     categoryId: string;
   };
   searchParams: {
+    gender: string;
     colorId: string;
     sizeId: string;
     minPrice: string;
@@ -31,6 +32,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
 }) => {
   const products = await getProducts({
     categoryId: params.categoryId,
+    genderType: searchParams.gender,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
     minPrice: searchParams.minPrice,
@@ -39,6 +41,10 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   const sizes = await getSizes();
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
+  const genders = [
+    { id: "1", value: "Male" },
+    { id: "2", value: "Female" },
+  ];
 
   return (
     <div className="bg-white">
@@ -48,6 +54,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
             <MobileFilters sizes={sizes} colors={colors} />
             <div className="hidden lg:block">
+              <Filter valueKey="gender" name="Genders" data={genders} />
               <Filter valueKey="sizeId" name="Sizes" data={sizes} />
               <Filter valueKey="colorId" name="Colors" data={colors} />
 

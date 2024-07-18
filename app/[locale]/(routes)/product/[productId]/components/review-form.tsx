@@ -37,28 +37,28 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ data }) => {
   const user = getCurrentUser();
 
   useEffect(() => {
+    const fetchData = async () => {
+      const reviews = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
+      );
+
+      setReviewArr(reviews.data.data);
+
+      if (reviews?.data?.data.length > 0) {
+        const newRatingArr = [0, 0, 0, 0, 0];
+
+        reviews.data.data.forEach((item: any) => {
+          if (item.rating >= 1 && item.rating <= 5) {
+            newRatingArr[5 - item.rating] += 1;
+          }
+        });
+
+        setRatingArr(newRatingArr);
+      }
+    };
+
     fetchData();
   }, [data.id]);
-
-  const fetchData = async () => {
-    const reviews = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/review/${data.id}`
-    );
-
-    setReviewArr(reviews.data.data);
-
-    if (reviews?.data?.data.length > 0) {
-      const newRatingArr = [0, 0, 0, 0, 0];
-
-      reviews.data.data.forEach((item: any) => {
-        if (item.rating >= 1 && item.rating <= 5) {
-          newRatingArr[5 - item.rating] += 1;
-        }
-      });
-
-      setRatingArr(newRatingArr);
-    }
-  };
 
   const totalRatings = ratingArr.reduce((sum, count) => sum + count, 0);
   const getPercentage = (count: any) =>
@@ -164,14 +164,22 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ data }) => {
             <AccordionContent>
               {reviewArr.length > 2 ? (
                 <ScrollArea className="h-[500px] rounded-md border p-4">
-                  {reviewArr.map((item: any) => {
-                    return <ReviewDisplay data={item} />;
+                  {reviewArr.map((item: any, index) => {
+                    return (
+                      <div key={index}>
+                        <ReviewDisplay data={item} />;
+                      </div>
+                    );
                   })}
                 </ScrollArea>
               ) : (
                 <div>
-                  {reviewArr.map((item: any) => {
-                    return <ReviewDisplay data={item} />;
+                  {reviewArr.map((item: any, index) => {
+                    return (
+                      <div key={index}>
+                        <ReviewDisplay data={item} />
+                      </div>
+                    );
                   })}
                 </div>
               )}

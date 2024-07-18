@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Color, Size } from "@/types";
 
 interface FilterProps {
-  data: (Size | Color)[];
+  data: any[];
   name: string;
   valueKey: string;
 }
@@ -69,6 +69,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
                 onClick={() => onClick(filter.id)}
               >
                 {name === "Sizes" ? filter.value : filter.name}
+                {name === "Genders" && filter.value}
               </Button>
             )}
           </div>

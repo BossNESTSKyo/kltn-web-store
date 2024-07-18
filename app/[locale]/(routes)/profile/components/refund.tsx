@@ -74,6 +74,17 @@ const RefundPage = () => {
   });
 
   useEffect(() => {
+    const fetchRefunds = async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/refund?customerId=${
+          user ? user.id : "new"
+        }&isAccept=${isAccept}`
+      );
+
+      const refunds = response ? response.data.data : [];
+      setListRefunds(refunds);
+    };
+
     fetchRefunds();
 
     if (dates && dates[0] && dates[1]) {
@@ -86,18 +97,7 @@ const RefundPage = () => {
       const order = listOrders.find((order: any) => order.id === selectOrder);
       setListProducts(order.orderItems);
     }
-  }, [selectOrder, dates, isAccept]);
-
-  const fetchRefunds = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/refund?customerId=${
-        user ? user.id : "new"
-      }&isAccept=${isAccept}`
-    );
-
-    const refunds = response ? response.data.data : [];
-    setListRefunds(refunds);
-  };
+  }, [selectOrder, dates, isAccept, listOrders, user]);
 
   const handleChange = (dates: any, dateStrings: any) => {
     setDates(dates);
@@ -170,7 +170,10 @@ const RefundPage = () => {
             listRefunds.length > 0 &&
             listRefunds.map((refund: any, index: any) => {
               return (
-                <div className="flex flex-col gap-3 border-2 rounded-md p-3">
+                <div
+                  key={index}
+                  className="flex flex-col gap-3 border-2 rounded-md p-3"
+                >
                   <div className="flex justify-between">
                     <div>Order - {refund.order?.totalPrice}</div>
                     <div>
